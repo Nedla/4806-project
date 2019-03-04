@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: project.test.HttpRequestTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.016 s <<< FAILURE! - in project.test.HttpRequestTest
+homeDefaultMessage(project.test.HttpRequestTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at project.test.HttpRequestTest.homeDefaultMessage(HttpRequestTest.java:24)
+
