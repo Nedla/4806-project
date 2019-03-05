@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Still Untitled: Editor Page</title>
+    </head>
+    <body>
+       <p>Articles:</p>
+       <p>Articles to be accepted/rejected</p>
+       <table>
+           <thead>
+           <th>ID</th><th>Title</th><th>Status</th>
+           </thead>
+           <tbody th:each="article: ${articles}">
+           <tr>
+               <td th:text="${article.id}" />
+               <td th:text="${article.title}" />
+               <td th:text="${article.status}" />
+           </tr>
+           </tbody>
+       </table>
+    </body>
+</html>
