@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Still Untitled: Author Page</title>
+</head>
+<body>
+<form action="#" th:action="@{/articleSubmitForm}" th:object="${article}" method="post">
+    <table>
+        <tr>
+            <td>Article Title:</td>
+            <td><input type="text" th:field="*{title}" /></td>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+
+<p><a href="/logout">Logout</a></p>
+</body>
+</html>
