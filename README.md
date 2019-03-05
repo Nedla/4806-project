@@ -10,7 +10,7 @@ Article Submitter submits Article (some attachment, any format is ok). The Edito
 ### Project Status
 Description of the Kanban.
 
-(UML class diagram of model).
+<img src="class-diagram-v1-model.png" alt="Class Diagram" width="400"/>
 
 <img src="ER-diagram-v1.png" alt="ER Diagram" width="200"/>
 
