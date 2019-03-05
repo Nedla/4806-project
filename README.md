@@ -12,5 +12,5 @@ Description of the Kanban.
 
 (UML class diagram of model).
 
-(ER diagram of database schema).
+<img src="ER-diagram-v1.png" alt="ER Diagram" width="200"/>
 
