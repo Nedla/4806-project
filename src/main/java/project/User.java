@@ -20,8 +20,6 @@ public class User {
         EDITOR
     }
 
-    public static List<String> roles = Arrays.asList(Role.values().toString());
-
     private String username;
     private String password;
     private String role;
