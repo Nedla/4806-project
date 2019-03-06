@@ -5,10 +5,30 @@
 - Alden Wang (1010278686)
 
 ### Project Prompt
-Article Submitter submits Article (some attachment, any format is ok). The Editor assigns the article to a Reviewer, and provides a deadline for submission of the review. The Reviewer submits a Review of the article. The Editor accepts/rejects the Article based on the review. The status of the article ("submitted", "in review", "accepted", "rejected") and the review should be visible to the Editor and Submitter. The Editor can list all articles in the system, sort/filter them by status, and highlight/show articles whose reviews are overdue. The Reviewer can list the articles assigned to him/her, and sort them by deadline.
+This web-app will host articles that can be reviewed and edited. Submitted articles can be searchable or sorted/filtered. Articles are assigned due dates which can be highlighted/filtered. Changes to articles will be recorded.
 
-### Project Status
-Description of the Kanban.
+Article statuses: Submitted, in review, accepted, rejected
+
+Roles: Article submitter - Submits articles as an attachment in any format. Can view reviews on their articles. Editors - Assigns articles to reviewer with a deadline to submit the review. Can accept/reject article based on review.
+Reviewers - Submits reviews of articles. Can view a list of articles assigned to them.
+
+Articles are viewable to: Article submitter, editor, assigned reviewers. Reviews are viewable to: Article submitter, editors
+
+### Features
+
+### Project Status 05-03-2019
+
+- Project hosted on Travis CI, build successful
+- Application runs on Heroku
+- Initial commits have been made (Frameworks, Maven project)
+- UML class digrams have been created (MVC, Database schema)
+
+### TODO
+
+- Create tests
+- Create user roles, add permissions
+- Secure logins
+- Allow file uploads
 
 <img src="class-diagram-v1-model.png" alt="Class Diagram" width="400"/>
 
