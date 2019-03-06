@@ -2,7 +2,7 @@
 ### Group: test group please ignore
 ### Members
 - Conor McKeen (101008993)
-- Alden Wang (1010278686)
+- Alden Wang (101027686)
 
 ### Project Prompt
 This web-app will host articles that can be reviewed and edited. Submitted articles can be searchable or sorted/filtered. Articles are assigned due dates which can be highlighted/filtered. Changes to articles will be recorded.
