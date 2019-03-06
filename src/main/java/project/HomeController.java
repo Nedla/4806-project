@@ -20,11 +20,11 @@ public class HomeController {
     public String checkRole(@CookieValue(value="role", defaultValue="none") String roleCookie) {
         if (roleCookie.equals("none")) {
             return "redirect:/loginPage";
-        } else if (roleCookie.equals("Submitter")) {
+        } else if (roleCookie.equals(User.Role.SUBMITTER.toString())) {
             return "redirect:/articleSubmitForm";
-        } else if (roleCookie.equals("Reviewer")) {
+        } else if (roleCookie.equals(User.Role.REVIEWER.toString())) {
             return "redirect:/reviewerView";
-        } else if (roleCookie.equals("Editor")) {
+        } else if (roleCookie.equals(User.Role.EDITOR.toString())) {
             return "redirect:/editorView";
         } else {
             return "error";
