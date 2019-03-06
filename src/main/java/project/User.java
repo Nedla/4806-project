@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 public class User {
@@ -12,9 +14,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public static enum Role {
+        SUBMITTER,
+        REVIEWER,
+        EDITOR
+    }
+
     private String username;
     private String password;
     private String role;
+
 
     public User(String username, String password, String role) {
         this.username = username;

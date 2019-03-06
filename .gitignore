@@ -6,3 +6,5 @@
 .project
 _config.yml
 .idea
+*.png
+*.iml
