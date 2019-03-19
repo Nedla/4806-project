@@ -20,7 +20,7 @@ public class ArticleController {
     }
     @PostMapping("articleSubmitForm")
     public String articleSubmitFormPost(Article article) {
-        article.setStatus("Submitted");
+        article.setStatus(Article.Status.SUBMITTED.toString());
         articleRepository.save(article);
         return "redirect:/";
     }
