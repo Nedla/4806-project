@@ -11,10 +11,10 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public static enum Role {
+    public enum Role {
         SUBMITTER,
         REVIEWER,
         EDITOR

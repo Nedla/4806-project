@@ -10,10 +10,15 @@ import javax.persistence.Id;
 public class Article {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
+
+    public enum Status {
+        SUBMITTED,
+        REVIEWED
+    }
 
     //TODO make enum instead of string?
     private String status;
@@ -22,7 +27,7 @@ public class Article {
 
     public Article(String title) {
         this.title = title;
-        this.status = "Submitted";
+        this.status = Status.SUBMITTED.toString();
     }
     public Article() {}
 
