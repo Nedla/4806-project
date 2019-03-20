@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 public class Article {
 
@@ -49,5 +52,15 @@ public class Article {
     public String getStatus() {
         return status;
     }
+
+    /*
+    public void setArticle(MultipartFile article) {
+        this.article = article;
+    }
+
+    public MultipartFile getArticle() {
+        return article;
+    }
+    */
 
 }
