@@ -19,6 +19,11 @@
             </tr>
             </tbody>
         </table>
+        <ul>
+            <li th:each="file : ${files}">
+                <a th:href="${file}" th:text="${file}" />
+            </li>
+        </ul>
         <p><a href="/logout">Logout</a></p>
         <footer>A Project by Test Group Please Ignore</footer>
     </body>

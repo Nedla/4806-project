@@ -21,13 +21,11 @@
             </tr>
         </table>
     </form>
-
     <ul>
         <li th:each="file : ${files}">
             <a th:href="${file}" th:text="${file}" />
         </li>
     </ul>
-
     <p><a href="/logout">Logout</a></p>
     <footer>A project by Test Group Please Ignore</footer>
 </body>
