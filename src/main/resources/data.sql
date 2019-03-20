@@ -1,4 +1,4 @@
-INSERT INTO [USER] (username, password, role) VALUES
+INSERT INTO USER (username, password, role) VALUES
   ('submitter', 'pass', 'SUBMITTER'),
   ('reviewer', 'pass', 'REVIEWER'),
   ('editor', 'pass', 'EDITOR');
