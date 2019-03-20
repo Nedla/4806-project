@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,11 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    public User user = new User();
+
     @GetMapping("/loginPage")
     public String loginPageGet(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", this.user);
         return "loginPage";
     }
     @PostMapping("/loginPage")
@@ -35,7 +38,7 @@ public class UserController {
 
     @GetMapping("/registerUserForm")
     public String registerUserFormGet(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", this.user);
         model.addAttribute("roles", User.Role.values());
         return "registerUserForm";
     }

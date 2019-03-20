@@ -25,7 +25,6 @@ public class Article {
     }
     private File article;
 
-    //TODO make enum instead of string?
     private String status;
 
     public Article(String title) {

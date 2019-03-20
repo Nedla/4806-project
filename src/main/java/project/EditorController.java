@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 public class EditorController {
 
@@ -15,7 +17,11 @@ public class EditorController {
 
     @GetMapping("/editorView")
     public String editorViewGet(Model model) {
-        model.addAttribute("articles", articleRepository.findAll());
+        model.addAttribute("articles", getAllArticles());
         return "editorView";
+    }
+
+    public Iterable<Article> getAllArticles() {
+        return articleRepository.findAll();
     }
 }
