@@ -8,7 +8,7 @@
 - Alden Wang (101027686)
 
 ### Build Status
-Platform: http://article-submission-and-review.herokuapp.com
+Platform: http://article-submission-and-review.herokuapp.com  
 [![Build Status](https://travis-ci.org/Nedla/4806-project.svg?branch=master)](https://travis-ci.org/Nedla/4806-project)
 
 ### Project Prompt
