@@ -62,7 +62,7 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(302))
-                .andDo(MockMvcResultHandlers.print())
+                //.andDo(MockMvcResultHandlers.print())
                 .andExpect(view().name("redirect:/"));
 
         //TODO Repo check for update

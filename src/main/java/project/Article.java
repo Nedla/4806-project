@@ -20,7 +20,6 @@ public class Article {
         REVIEWED
     }
 
-    //TODO make enum instead of string?
     private String status;
 
     //TODO add file storage (as file on disk or in memory?)

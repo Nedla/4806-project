@@ -13,9 +13,11 @@ public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
 
+    public Article article = new Article();
+
     @GetMapping("/articleSubmitForm")
     public String articleSubmitFormGet(Model model) {
-        model.addAttribute("article", new Article());
+        model.addAttribute("article", this.article);
         return "articleSubmitForm";
     }
     @PostMapping("articleSubmitForm")
