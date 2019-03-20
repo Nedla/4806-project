@@ -1,10 +1,14 @@
 package project;
 
+import java.io.File;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Article {
@@ -19,11 +23,10 @@ public class Article {
         SUBMITTED,
         REVIEWED
     }
+    private File article;
 
     //TODO make enum instead of string?
     private String status;
-
-    //TODO add file storage (as file on disk or in memory?)
 
     public Article(String title) {
         this.title = title;
@@ -53,6 +56,14 @@ public class Article {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setArticle(File article) {
+        this.article = article;
+    }
+
+    public File getArticle() {
+        return article;
     }
 
 }
