@@ -41,8 +41,8 @@ public class ArticleController {
     }
 
     @GetMapping("/articleSubmitForm")
-    public String articleSubmitFormGet(Model model) throws IOException {
-        model.addAttribute("article", new Article());
+    public String articleSubmitFormGet(Model model) {
+        model.addAttribute("article", this.article);
 
         model.addAttribute("files", storageService.loadAll().map(
             path -> MvcUriComponentsBuilder.fromMethodName(
