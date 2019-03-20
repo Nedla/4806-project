@@ -6,18 +6,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+
+import project.storage.StorageService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class EditorController {
 
+    private final StorageService storageService;
+
     @Autowired
     ArticleRepository articleRepository;
+
+    @Autowired
+    public EditorController(StorageService storageService) {
+        this.storageService = storageService;
+    }
 
     @GetMapping("/editorView")
     public String editorViewGet(Model model) {
         model.addAttribute("articles", getAllArticles());
+        model.addAttribute("files", storageService.loadAll().map(
+            path -> MvcUriComponentsBuilder.fromMethodName(
+                ArticleController.class, "serveFile", path.getFileName().toString())
+                .build().toString())
+                .collect(Collectors.toList()));
         return "editorView";
     }
 
