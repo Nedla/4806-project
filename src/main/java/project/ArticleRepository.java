@@ -13,5 +13,5 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "articles", path = "articles")
 public interface ArticleRepository extends CrudRepository<Article, Long> {
-
+    List<Article> findByTitle(String title);
 }
