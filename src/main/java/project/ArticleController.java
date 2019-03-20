@@ -43,13 +43,11 @@ public class ArticleController {
     @GetMapping("/articleSubmitForm")
     public String articleSubmitFormGet(Model model) {
         model.addAttribute("article", this.article);
-
         model.addAttribute("files", storageService.loadAll().map(
             path -> MvcUriComponentsBuilder.fromMethodName(
                 ArticleController.class, "serveFile", path.getFileName().toString())
                 .build().toString())
                 .collect(Collectors.toList()));
-
         return "articleSubmitForm";
     }
 
@@ -80,7 +78,7 @@ public class ArticleController {
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
 
-        article.setStatus("Submitted");
+        article.setStatus(Article.Status.SUBMITTED.toString());
         article.setArticle(articleFile);
         articleRepository.save(article);
 
