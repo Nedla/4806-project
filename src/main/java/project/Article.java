@@ -1,5 +1,6 @@
 package project;
 
+import java.io.File;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +19,10 @@ public class Article {
 
     private String title;
 
+    private File article;
+
     //TODO make enum instead of string?
     private String status;
-
-    //TODO add file storage (as file on disk or in memory?)
 
     public Article(String title) {
         this.title = title;
@@ -53,14 +54,12 @@ public class Article {
         return status;
     }
 
-    /*
-    public void setArticle(MultipartFile article) {
+    public void setArticle(File article) {
         this.article = article;
     }
 
-    public MultipartFile getArticle() {
+    public File getArticle() {
         return article;
     }
-    */
 
 }
