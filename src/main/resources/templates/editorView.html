@@ -4,21 +4,22 @@
         <title>Still Untitled: Editor Page</title>
     </head>
     <body>
-       <p>Articles:</p>
-       <p>Articles to be accepted/rejected</p>
-       <table>
-           <thead>
-           <th>ID</th><th>Title</th><th>Status</th>
-           </thead>
-           <tbody th:each="article: ${articles}">
-           <tr>
-               <td th:text="${article.id}" />
-               <td th:text="${article.title}" />
-               <td th:text="${article.status}" />
-           </tr>
-           </tbody>
-       </table>
+        <p>Articles:</p>
+        <p>Articles to be accepted/rejected</p>
+        <table>
+            <thead>
+            <th>ID</th><th>Title</th><th>Status</th>
+            </thead>
+            <tbody th:each="article: ${articles}">
+            <tr>
+                <td th:text="${article.id}" />
+                <td th:text="${article.title}" />
+                <td th:text="${article.status}" />
+                <td><a th:href="${article.article}" /></td>
+            </tr>
+            </tbody>
+        </table>
+        <p><a href="/logout">Logout</a></p>
+        <footer>A Project by Test Group Please Ignore</footer>
     </body>
-
-    <p><a href="/logout">Logout</a></p>
 </html>
