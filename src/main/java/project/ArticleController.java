@@ -79,7 +79,7 @@ public class ArticleController {
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
 
         article.setStatus(Article.Status.SUBMITTED.toString());
-        article.setArticle(articleFile);
+        article.setFile(articleFile);
         articleRepository.save(article);
 
         return "redirect:/";

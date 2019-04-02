@@ -23,7 +23,7 @@ public class Article {
         SUBMITTED,
         REVIEWED
     }
-    private File article;
+    private File file;
 
     private String status;
 
@@ -49,20 +49,26 @@ public class Article {
         this.title = title;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public boolean setStatus(String status) {
+        for(Status s : Article.Status.values()) {
+            if (status.equals(s.toString())) {
+                this.status = status;
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setArticle(File article) {
-        this.article = article;
+    public void setFile(File file) {
+        this.file = file;
     }
 
-    public File getArticle() {
-        return article;
+    public File getFile() {
+        return file;
     }
 
 }
