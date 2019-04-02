@@ -28,7 +28,7 @@ public class User {
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        setRole(role);
     }
     public User() {}
 
@@ -60,7 +60,13 @@ public class User {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public boolean setRole(String role) {
+        for(Role r : User.Role.values()) {
+            if (role.equals(r.toString())) {
+                this.role = role;
+                return true;
+            }
+        }
+        return false;
     }
 }
