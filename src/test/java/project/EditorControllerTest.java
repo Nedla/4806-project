@@ -28,12 +28,6 @@ public class EditorControllerTest {
     public void testEditorViewGet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/editorView"))
                 .andExpect(status().isOk())
-                //.andExpect(model().attribute("articles", editorController.getAllArticles()))
                 .andExpect(view().name("editorView"));
-    }
-
-    @Test
-    public void testArticleAssigned() throws Exception {
-        
     }
 }

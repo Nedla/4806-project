@@ -33,6 +33,7 @@ public class UserController {
             return "error"; //TODO multiple users can have same user/pass, should prevent this
         }
         response.addCookie(new Cookie("role", users.get(0).getRole().toString()));
+        response.addCookie(new Cookie("userId", String.valueOf(users.get(0).getId())));
         return "redirect:/";
     }
 
@@ -44,8 +45,19 @@ public class UserController {
     }
     @PostMapping("/registerUserForm")
     public String registerUserFormPost(User user, HttpServletResponse response) {
+        //TODO unqiue user check
+        /*List<User> users = userRepository.findByUsername(user.getUsername());
+        if (!users.isEmpty()) {
+            return "";
+        } else {
+            userRepository.save(user);
+            response.addCookie(new Cookie("role", user.getRole()));
+            return "redirect:/";
+        }*/
+
         userRepository.save(user);
         response.addCookie(new Cookie("role", user.getRole().toString()));
+        response.addCookie(new Cookie("userId", String.valueOf(user.getId())));
         return "redirect:/";
     }
 }

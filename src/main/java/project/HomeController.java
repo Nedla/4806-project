@@ -34,6 +34,7 @@ public class HomeController {
     @GetMapping("/logout")
     public String logoutGet(HttpServletResponse response) {
         response.addCookie(new Cookie("role", "none"));
+        response.addCookie(new Cookie("userId", "-1"));
         return "redirect:/";
     }
 }
