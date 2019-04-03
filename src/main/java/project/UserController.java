@@ -25,7 +25,8 @@ public class UserController {
     @GetMapping("/loginPage")
     public String loginPageGet(Model model) {
         model.addAttribute("user", this.user);
-        model.addAttribute("numOfArticles", articleRepository.count());
+        model.addAttribute("numArticles", articleRepository.count());
+        model.addAttribute("numUsers", userRepository.count());
         return "loginPage";
     }
     @PostMapping("/loginPage")

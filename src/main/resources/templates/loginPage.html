@@ -9,11 +9,11 @@
     
     .sidestats {
         height: 100%;
-        width: 160px;
+        width: 260px;
         position: fixed;
         z-index: 1;
         top: 0;
-        left: 0;
+        right: 0;
         background-color: #111;
         overflow-x: hidden;
         padding-top: 20px;
@@ -23,15 +23,17 @@
         padding: 6px 8px 6px 16px;
         text-decoration: none;
         font-size: 25px;
-        color: #818181;
+        color: #b6b6b6;
         display: block;
     }
 </style>
 <body>
+    <h1>Article Submit and Review</h1>
     <div class="sidestats">
-        <p th:text="${$numOfArticles}"></p>
-        <p th:text="${}"></p>
-        <p th:text="${}"></p>
+        <p>Number of articles:</p>
+        <p th:text="${numArticles}"></p>
+        <p>Number of users:</p>
+        <p th:text="${numUsers}"></p>
     </div>
     <div class="main">
         <form action="#" th:action="@{/loginPage}" th:object="${user}" method="post">
@@ -43,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="text" th:field="*{password}" /></td>
+                    <td><input type="password" th:field="*{password}" /></td>
                     <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
                 </tr>
                 <tr>
