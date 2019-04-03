@@ -1,5 +1,6 @@
 package project;
 
+import org.aspectj.weaver.Iterators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ public class UserController {
     UserRepository userRepository;
 
     @Autowired
-    UserRepository articleRepository;
+    ArticleRepository articleRepository;
 
     public User user = new User();
 
