@@ -8,22 +8,17 @@
         <p>Articles to be accepted/rejected</p>
         <table>
             <thead>
-            <th>ID</th><th>Title</th><th>Status</th>
+            <th>ID</th><th>Title</th><th>Status</th><th>File</th>
             </thead>
             <tbody th:each="article: ${articles}">
             <tr>
                 <td th:text="${article.id}" />
                 <td th:text="${article.title}" />
                 <td th:text="${article.status}" />
-                <td><a th:href="${article.article}" /></td>
+                <td><a th:href="${'files/' + article.file}" th:text="${article.file}"/></td>
             </tr>
             </tbody>
         </table>
-        <ul>
-            <li th:each="file : ${files}">
-                <a th:href="${file}" th:text="${file}" />
-            </li>
-        </ul>
         <p><a href="/logout">Logout</a></p>
         <footer>A Project by Test Group Please Ignore</footer>
     </body>
