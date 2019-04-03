@@ -23,7 +23,7 @@ public class ApplicationTest {
     private MockMvc mockMvc;
 
     @Test
-    public void homeDefaultMessage() throws Exception {
+    public void testDefaultMessage() throws Exception {
         this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello World")));
     }

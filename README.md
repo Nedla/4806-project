@@ -44,7 +44,7 @@ Articles are viewable to: Article submitter, editor, assigned reviewers. Reviews
 - Add files as a field to article objects so they can be properly stored in the db
 - Manage file permissions for each role to be listed, edited, deleted
 
-<img src="class-diagram-v1-model.png" alt="Class Diagram" width="400"/>
+<img src="class-diagram-v2-model.png" alt="Class Diagram" width="400"/>
 
 <img src="ER-diagram-v1.png" alt="ER Diagram" width="200"/>
 

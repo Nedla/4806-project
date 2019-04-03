@@ -4,13 +4,11 @@
 </head>
 <body>
 
-    <h2 th:if="${message}" th:text="${message}"></h2>
-
-    <form action="#" th:action="@{/articleSubmitForm}" th:object="${article}" enctype="multipart/form-data" method="POST">
+    <form action="#" th:action="@{/articleSubmitForm}" enctype="multipart/form-data" method="POST">
         <table>
             <tr>
                 <td>Article Title:</td>
-                <td><input type="text" th:field="*{title}" /></td>
+                <td><input type="text" name="title" /></td>
             </tr>
             <tr>
                 <td>File to upload:</td>
