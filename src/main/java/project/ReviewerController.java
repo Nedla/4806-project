@@ -16,6 +16,7 @@ public class ReviewerController {
 
     @Autowired
     ArticleRepository articleRepository;
+
     @Autowired
     UserRepository userRepository;
 
@@ -26,6 +27,7 @@ public class ReviewerController {
 
         User user = userRepository.findById(userId);
         model.addAttribute("user", user);
+        model.addAttribute("username", user.getUsername());
 
         List<Article> articles = new ArrayList<>();
         for(Long id : user.getArticleIds()) {

@@ -36,8 +36,8 @@
         <p th:text="${numUsers}"></p>
     </div>
     <div class="main">
+    <table>
         <form action="#" th:action="@{/loginPage}" th:object="${user}" method="post">
-            <table>
                 <tr>
                     <td>Username:</td>
                     <td><input type="text" th:field="*{username}" /></td>
@@ -49,13 +49,17 @@
                     <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
                 </tr>
                 <tr>
-                    <td><button type="submit">Login</button></td>
-                </tr>
-            </table>
-        </form>
-
-        <p><a href="/registerUserForm">Register</a></p>
+                    <td><button type="submit">Login</button></td>     
+            </form>
+            <td>
+                <br>
+                <form action="/registerUserForm" method="get">
+                    <input type="submit" value="Register" />
+                </form>
+            </td>
+        </tr>
+    </table>
     </div>
-<footer>A Project by Test Group Please Ignore</footer>
+    <footer>A Project by Test Group Please Ignore</footer>
 </body>
 </html>
