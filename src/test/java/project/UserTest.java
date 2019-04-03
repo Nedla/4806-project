@@ -55,7 +55,7 @@ public class UserTest {
     @Test
     public void testRole() throws Exception {
         User user = new User("name1", "pass1", User.Role.EDITOR);
-        Assert.assertEquals("EDITOR", user.getRole());
+        Assert.assertEquals(User.Role.EDITOR, user.getRole());
 
         user.setRole(User.Role.REVIEWER);
         Assert.assertEquals(User.Role.REVIEWER, user.getRole());
