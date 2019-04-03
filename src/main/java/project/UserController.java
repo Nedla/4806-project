@@ -17,11 +17,15 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserRepository articleRepository;
+
     public User user = new User();
 
     @GetMapping("/loginPage")
     public String loginPageGet(Model model) {
         model.addAttribute("user", this.user);
+        model.addAttribute("numOfArticles", articleRepository.count());
         return "loginPage";
     }
     @PostMapping("/loginPage")

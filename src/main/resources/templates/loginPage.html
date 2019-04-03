@@ -2,26 +2,58 @@
 <head>
     <title>Still Untitled: Login Page</title>
 </head>
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+    
+    .sidestats {
+        height: 100%;
+        width: 160px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+    
+    .sidestats p {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+</style>
 <body>
-<form action="#" th:action="@{/loginPage}" th:object="${user}" method="post">
-    <table>
-        <tr>
-            <td>Username:</td>
-            <td><input type="text" th:field="*{username}" /></td>
-            <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" th:field="*{password}" /></td>
-            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
-        </tr>
-        <tr>
-            <td><button type="submit">Login</button></td>
-        </tr>
-    </table>
-</form>
+    <div class="sidestats">
+        <p th:text="${$numOfArticles}"></p>
+        <p th:text="${}"></p>
+        <p th:text="${}"></p>
+    </div>
+    <div class="main">
+        <form action="#" th:action="@{/loginPage}" th:object="${user}" method="post">
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" th:field="*{username}" /></td>
+                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="text" th:field="*{password}" /></td>
+                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Login</button></td>
+                </tr>
+            </table>
+        </form>
 
-<p><a href="/registerUserForm">Register</a></p>
+        <p><a href="/registerUserForm">Register</a></p>
+    </div>
 <footer>A Project by Test Group Please Ignore</footer>
 </body>
 </html>
