@@ -21,7 +21,7 @@ public class UserRepositoryTest {
         List<User> users = userRepository.findByUsernameAndPassword("editor", "pass");
         Assert.notEmpty(users, "List should not be empty");
         Assert.isTrue(users.size() == 1, "Should only find 1 user");
-        Assert.isTrue(users.get(0).getRole().equals(Role.EDITOR), "Should have editor role");
+        Assert.isTrue(users.get(0).getRole().equals(User.Role.EDITOR), "Should have editor role");
 
         int i = 0;
         for (User user : userRepository.findAll()) {
@@ -33,7 +33,7 @@ public class UserRepositoryTest {
 
     @Test
     public void repoSaveTest() {
-        userRepository.save(new User("testuser", "testpass", Role.REVIEWER));
+        userRepository.save(new User("testuser", "testpass", User.Role.REVIEWER));
 
         List<User> users = userRepository.findByUsernameAndPassword("testuser", "testpass");
         Assert.isTrue(users.size() == 1, "Should find 1 user");

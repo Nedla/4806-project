@@ -1,36 +1,44 @@
 package project;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.Arrays;
+
 import java.util.List;
 
 @Entity
-public class User implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class User {
     public enum Role {
         SUBMITTER,
         REVIEWER,
         EDITOR
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+    
     private String username;
     private String password;
-    private String role;
 
+    @ElementCollection
+    private List<Long> articleIds;
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
-        setRole(role);
+        this.role = role;
     }
+
     public User() {}
 
     public Long getId() {
@@ -46,7 +54,6 @@ public class User implements Serializable {
     }
 
     public void setUsername(String username) {
-
         this.username = username;
     }
 
@@ -58,17 +65,42 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public boolean setRole(String role) {
-        for(Role r : User.Role.values()) {
-            if (role.equals(r.toString())) {
-                this.role = role;
-                return true;
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Long> getArticleIds() {
+        return this.articleIds;
+    }
+
+    public void setArticleIds(List<Long> ids) throws Exception {
+        if (this.role.equals(User.Role.REVIEWER)) {
+            this.articleIds = ids;
+        } else {
+            throw new Exception("User has an invalid role - Must be reviewer to be assigned articles");
+        }
+    }
+
+    public void addArticleId(Long id) throws Exception {
+        if (!(this.articleIds.contains(id)) && this.role.equals(User.Role.REVIEWER)) {
+            this.articleIds.add(id);
+        } else {
+                throw new Exception("No.");
+        }
+    }
+
+    public void deleteArticle(long id) throws Exception {
+        for (Long i : this.articleIds) {
+            if (i.equals(id)) {
+                this.articleIds.remove(i);
+                return;
             }
         }
-        return false;
+        throw new Exception("ArticleID not found");
     }
 }
+
