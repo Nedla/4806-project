@@ -1,32 +1,35 @@
 package project;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity
-public class User {
+public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
+    public enum Role {
+        SUBMITTER,
+        REVIEWER,
+        EDITOR
+    }
 
     private String username;
     private String password;
+    private String role;
 
-    public User(String username, String password, Role role) {
+
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        setRole(role);
     }
     public User() {}
 
@@ -43,6 +46,7 @@ public class User {
     }
 
     public void setUsername(String username) {
+
         this.username = username;
     }
 
@@ -54,11 +58,17 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public boolean setRole(String role) {
+        for(Role r : User.Role.values()) {
+            if (role.equals(r.toString())) {
+                this.role = role;
+                return true;
+            }
+        }
+        return false;
     }
 }

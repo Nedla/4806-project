@@ -44,6 +44,15 @@ public class UserController {
     }
     @PostMapping("/registerUserForm")
     public String registerUserFormPost(User user, HttpServletResponse response) {
+        /*List<User> users = userRepository.findByUsername(user.getUsername());
+        if (!users.isEmpty()) {
+            return "";
+        } else {
+            userRepository.save(user);
+            response.addCookie(new Cookie("role", user.getRole()));
+            return "redirect:/";
+        }*/
+
         userRepository.save(user);
         response.addCookie(new Cookie("role", user.getRole().toString()));
         return "redirect:/";

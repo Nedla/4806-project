@@ -22,7 +22,7 @@
         <p>Assign an article to a reviewer</p>
         <!--<form action="#" th:action="@{/editorView}" th:object="${reviewers}" method="post">-->
             <select>
-                <option th:each="r : ${reviewers}" th:name="${r.getUsername()}"></option>
+                <option th:each="r : ${reviewers}" th:name="${r.getUsername()}" th:text="${r.getUsername()}"></option>
             </select>
         <!--</form>--->
         <ul>
