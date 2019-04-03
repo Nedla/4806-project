@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 public class Article {
     public enum Status {
@@ -54,12 +56,21 @@ public class Article {
         this.title = title;
     }
 
+
     public void setStatus(Status status) {
         this.status = status;
     }
 
     public Status getStatus() {
         return status;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = new File(file.getOriginalFilename());
+        try {
+            file.transferTo(this.file);
+        } catch (Exception e) {
+        }
     }
 
     public void setFile(File file) {

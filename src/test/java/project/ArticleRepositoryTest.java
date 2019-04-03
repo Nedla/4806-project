@@ -24,7 +24,7 @@ public class ArticleRepositoryTest {
 
         int i = 0;
         for (Article article : articleRepository.findAll()) {
-            Assert.isTrue(article.getStatus().equals(Article.Status.SUBMITTED.toString()), "All articles start with status SUBMITTED");
+            Assert.isTrue(article.getStatus().equals(Article.Status.SUBMITTED), "All articles start with status SUBMITTED");
             i++;
         }
         Assert.isTrue(i==3, "Should contain 3 articles");

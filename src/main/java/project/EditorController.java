@@ -36,14 +36,15 @@ public class EditorController {
 
     @GetMapping("/editorView")
     public String editorViewGet(Model model) {
-        model.addAttribute("articles", getAllArticles());
+        model.addAttribute("articles", articleRepository.findAll());
         model.addAttribute("files",
-                storageService.loadAll()
-                        .map(path -> MvcUriComponentsBuilder
-                                .fromMethodName(ArticleController.class, "serveFile", path.getFileName().toString())
-                                .build().toString())
-                        .collect(Collectors.toList()));
-        model.addAttribute("reviewers", findByRole(User.Role.REVIEWER));
+            storageService.loadAll()
+            .map(path -> MvcUriComponentsBuilder
+            .fromMethodName(ArticleController.class, "serveFile", path.getFileName().toString())
+            .build().toString())
+            .collect(Collectors.toList()));
+        model.addAttribute("submittedArticles", articleRepository.findByStatus(Article.Status.SUBMITTED));
+        model.addAttribute("reviewers", userRepository.findByRole(User.Role.REVIEWER));
         return "editorView";
     }
 
@@ -57,7 +58,7 @@ public class EditorController {
             article.setStatus(Article.Status.ASSIGNED);
             articleRepository.save(article);
         } catch (Exception e) {
-            e.printStackTrace();
+            return "redirect:/error";
         }
         return "redirect:/editorView";
     }
@@ -65,8 +66,5 @@ public class EditorController {
     public Iterable<Article> getAllArticles() {
         return articleRepository.findAll();
     }
-
-    public Iterable<User> findByRole(Role role) {
-        return userRepository.findByRole(role);
-    }
 }
+
