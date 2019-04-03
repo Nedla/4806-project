@@ -89,7 +89,7 @@ public class User {
         if (!(this.articleIds.contains(id)) && this.role.equals(User.Role.REVIEWER)) {
             this.articleIds.add(id);
         } else {
-                throw new Exception("No.");
+            throw new Exception("User has an invalid role OR the article is already assigned");
         }
     }
 

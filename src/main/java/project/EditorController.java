@@ -36,24 +36,29 @@ public class EditorController {
 
     @GetMapping("/editorView")
     public String editorViewGet(Model model) {
-        model.addAttribute("articles", getAllArticles());
+        model.addAttribute("articles", articleRepository.findAll());
         model.addAttribute("files",
-                storageService.loadAll()
-                        .map(path -> MvcUriComponentsBuilder
-                                .fromMethodName(ArticleController.class, "serveFile", path.getFileName().toString())
-                                .build().toString())
-                        .collect(Collectors.toList()));
-        model.addAttribute("reviewers", findByRole(User.Role.REVIEWER));
+            storageService.loadAll()
+            .map(path -> MvcUriComponentsBuilder
+            .fromMethodName(ArticleController.class, "serveFile", path.getFileName().toString())
+            .build().toString())
+            .collect(Collectors.toList()));
+        model.addAttribute("submittedArticles", articleRepository.findByStatus(Article.Status.SUBMITTED));
+        model.addAttribute("reviewers", userRepository.findByRole(User.Role.REVIEWER));
         return "editorView";
     }
 
     @PostMapping("editorView")
     public String editorViewPost(@RequestParam("article") long articleId, @RequestParam("user") long userId) {
         try {
-            userRepository.findById(userId).addArticleId(articleId);
-            articleRepository.findById(articleId).setStatus(Article.Status.ASSIGNED);
+            User user = userRepository.findById(userId);
+            user.addArticleId(articleId);
+            userRepository.save(user);
+            Article article = articleRepository.findById(articleId);
+            article.setStatus(Article.Status.ASSIGNED);
+            articleRepository.save(article);
         } catch (Exception e) {
-            e.printStackTrace();
+            return "redirect:/error";
         }
         return "redirect:/editorView";
     }
@@ -61,8 +66,5 @@ public class EditorController {
     public Iterable<Article> getAllArticles() {
         return articleRepository.findAll();
     }
-
-    public Iterable<User> findByRole(Role role) {
-        return userRepository.findByRole(role);
-    }
 }
+

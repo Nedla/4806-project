@@ -23,12 +23,12 @@
         <form action="#" th:action="@{/editorView}" method="post">
             <table>
                 <thead>
-                    <th>Article</th><th>Editor</th>
+                    <th>Article</th><th>Reviewer</th>
                 </thead>
                 <tbody>
                     <td>
                         <select th:name="article">
-                            <option th:each="a : ${articles}" th:value="${a.id}" th:text="${a.title}"></option>
+                            <option th:each="a : ${submittedArticles}" th:value="${a.id}" th:text="${a.title}"></option>
                         </select>
                     </td>
                     <td>
