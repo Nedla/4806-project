@@ -11,9 +11,10 @@
             <tr>
                 <td>Article Title:</td>
                 <td><input type="text" th:field="*{title}" /></td>
+            </tr>
+            <tr>
                 <td>File to upload:</td>
                 <td><input type="file" name="file" /></td>
-
                 <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>
             </tr>
             <tr>

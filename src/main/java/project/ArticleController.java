@@ -65,22 +65,23 @@ public class ArticleController {
     RedirectAttributes redirectAttributes, Article article) {
 
         String fileName = file.getOriginalFilename();
-        File articleFile = new File(servletRequest.getServletContext().getRealPath("/article"), fileName);
-
+        File uploadedFile = new File(servletRequest.getServletContext().getRealPath("/article"), fileName);
+        /*
         try
         {
-            file.transferTo(articleFile);
+            file.transferTo(uploadedFile);
         } catch (IOException e)
         {
             e.printStackTrace();
         }
-
-        storageService.store(file);
-        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
+        */
+        //storageService.store(file);
 
         article.setStatus(Article.Status.SUBMITTED.toString());
-        article.setArticle(articleFile);
+        article.setFile(uploadedFile);
         articleRepository.save(article);
+
+        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName);
 
         return "redirect:/";
     }

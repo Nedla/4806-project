@@ -32,20 +32,20 @@ public class UserController {
         } else if (users.size() > 1) {
             return "error"; //TODO multiple users can have same user/pass, should prevent this
         }
-        response.addCookie(new Cookie("role", users.get(0).getRole()));
+        response.addCookie(new Cookie("role", users.get(0).getRole().toString()));
         return "redirect:/";
     }
 
     @GetMapping("/registerUserForm")
     public String registerUserFormGet(Model model) {
         model.addAttribute("user", this.user);
-        model.addAttribute("roles", User.Role.values());
+        model.addAttribute("roles", Role.values());
         return "registerUserForm";
     }
     @PostMapping("/registerUserForm")
     public String registerUserFormPost(User user, HttpServletResponse response) {
         userRepository.save(user);
-        response.addCookie(new Cookie("role", user.getRole()));
+        response.addCookie(new Cookie("role", user.getRole().toString()));
         return "redirect:/";
     }
 }

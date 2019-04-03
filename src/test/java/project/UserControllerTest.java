@@ -52,7 +52,7 @@ public class UserControllerTest {
     @Test
     public void testLoginPagePost() throws Exception {
         Gson gson = new Gson();
-        User user = new User("name123", "pass123", User.Role.SUBMITTER.toString());
+        User user = new User("name123", "pass123", Role.SUBMITTER);
         List<User> users = userRepository.findByUsernameAndPassword("name123", "pass123");
         Assert.isTrue(users.isEmpty(), "User does not exist yet");
 
@@ -75,7 +75,7 @@ public class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/registerUserForm"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("user", userController.user))
-                .andExpect(model().attribute("roles", User.Role.values()))
+                .andExpect(model().attribute("roles", Role.values()))
                 .andExpect(view().name("registerUserForm"));
     }
 

@@ -6,12 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import project.Role;
 import project.storage.StorageService;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class EditorController {
@@ -19,7 +24,10 @@ public class EditorController {
     private final StorageService storageService;
 
     @Autowired
-    ArticleRepository articleRepository;
+    private ArticleRepository articleRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     public EditorController(StorageService storageService) {
@@ -34,10 +42,22 @@ public class EditorController {
                 ArticleController.class, "serveFile", path.getFileName().toString())
                 .build().toString())
                 .collect(Collectors.toList()));
+        model.addAttribute("reviewers", findByRole(Role.REVIEWER));
+        return "editorView";
+    }
+
+    @PostMapping("editorView")
+    public String editorViewPost(HttpServletRequest servletRequest, @RequestParam("username") String username, 
+    RedirectAttributes redirectAttributes, Article article) {
+        //UserRepository.findByUsername(username);
         return "editorView";
     }
 
     public Iterable<Article> getAllArticles() {
         return articleRepository.findAll();
+    }
+
+    public Iterable<User> findByRole(Role role) {
+        return userRepository.findByRole(role);
     }
 }

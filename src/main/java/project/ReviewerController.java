@@ -14,6 +14,7 @@ public class ReviewerController {
     @GetMapping("/reviewerView")
     public String reviewerViewGet(Model model) {
         //TODO select articles assigned to the given reviewer
+        
         return "reviewerView";
     }
 }

@@ -23,14 +23,16 @@ public class Article {
         SUBMITTED,
         REVIEWED
     }
-    private File article;
 
     private String status;
+
+    private File file;
 
     public Article(String title) {
         this.title = title;
         this.status = Status.SUBMITTED.toString();
     }
+
     public Article() {}
 
     public Long getId() {
@@ -57,12 +59,12 @@ public class Article {
         return status;
     }
 
-    public void setArticle(File article) {
-        this.article = article;
+    public void setFile(File file) {
+        this.file = file;
     }
 
-    public File getArticle() {
-        return article;
+    public File getFile() {
+        return file;
     }
 
 }
