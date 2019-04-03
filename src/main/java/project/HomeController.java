@@ -18,6 +18,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String checkRole(@CookieValue(value="role", defaultValue="none") String roleCookie) {
+        
         if (roleCookie.equals("none")) {
             return "redirect:/loginPage";
         } else if (roleCookie.equals(User.Role.SUBMITTER.toString())) {
