@@ -21,7 +21,7 @@ public class ReviewerController {
     UserRepository userRepository;
 
     @GetMapping("/reviewerView")
-    public String reviewerViewGet(@CookieValue(value="userId", defaultValue="-1") String userIdS, Model model) {
+    public String reviewerViewGet(@CookieValue(value="userId", defaultValue="1") String userIdS, Model model) {
         long userId = Long.parseLong(userIdS);
         if (userId == -1) return "error";
 

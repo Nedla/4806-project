@@ -41,7 +41,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articleSubmitForm")
-    public String articleSubmitFormGet(Model model, @CookieValue(value="userId", defaultValue="0") String userIdS) {
+    public String articleSubmitFormGet(Model model, @CookieValue(value="userId", defaultValue="1") String userIdS) {
         long userId = Long.parseLong(userIdS);
         model.addAttribute("username", userRepository.findById(userId).getUsername());
         model.addAttribute("article", this.article);

@@ -30,7 +30,7 @@ public class EditorController {
     }
 
     @GetMapping("/editorView")
-    public String editorViewGet(Model model, @CookieValue(value="userId", defaultValue="0") String userIdS) {
+    public String editorViewGet(Model model, @CookieValue(value="userId", defaultValue="1") String userIdS) {
         long userId = Long.parseLong(userIdS);
         model.addAttribute("username", userRepository.findById(userId).getUsername());
         model.addAttribute("articles", articleRepository.findAll());
