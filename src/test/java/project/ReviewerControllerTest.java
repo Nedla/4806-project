@@ -27,7 +27,6 @@ public class ReviewerControllerTest {
     @Test
     public void testReviewerViewGet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/reviewerView"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("reviewerView"));
+                .andExpect(redirectedUrl("/loginpage"));
     }
 }
