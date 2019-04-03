@@ -52,5 +52,5 @@ Articles are viewable to: Article submitter, editor, assigned reviewers. Reviews
 
 <img src="class-diagram-v3-model-dep.png" alt="Class Diagram" width="400"/>
 
-<img src="ER-diagram-v3.png" alt="ER Diagram" width="200"/>
+<img src="ER-diagram-v3.PNG" alt="ER Diagram" width="200"/>
 
