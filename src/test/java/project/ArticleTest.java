@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ArticleTest {
 
     @Test
-    public void testConstructor() throws Exception {
+    public void testConstructor() {
         Article article = new Article();
         Assert.assertNull(article.getTitle());
         Assert.assertNull(article.getStatus());
@@ -33,27 +33,21 @@ public class ArticleTest {
     }
 
     @Test
-    public void testId() throws Exception {
+    public void testId() {
         Article article = new Article();
         article.setId((long)42);
         Assert.assertEquals((long)42, (long)article.getId());
     }
 
     @Test
-    public void testTitle() throws Exception {
+    public void testTitle() {
         Article article = new Article();
         article .setTitle("title2");
         Assert.assertEquals("title2", article.getTitle());
     }
 
-    //TODO requires connection to storage service
-    /*
     @Test
-    public void testFile() throws Exception {}
-    */
-
-    @Test
-    public void testStatus() throws Exception {
+    public void testStatus() {
         Article article = new Article("title1");
         Assert.assertEquals("SUBMITTED", article.getStatus());
 

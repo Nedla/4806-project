@@ -4,17 +4,14 @@
 </head>
 <body>
 
-    <h2 th:if="${message}" th:text="${message}"></h2>
-
-    <form action="#" th:action="@{/articleSubmitForm}" th:object="${article}" enctype="multipart/form-data" method="POST">
+    <form action="#" th:action="@{/articleSubmitForm}" enctype="multipart/form-data" method="POST">
         <table>
             <tr>
                 <td>Article Title:</td>
-                <td><input type="text" th:field="*{title}" /></td>
+                <td><input type="text" name="title" /></td>
                 <td>File to upload:</td>
                 <td><input type="file" name="file" /></td>
 
-                <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>
             </tr>
             <tr>
                 <td><button type="submit">Upload and submit</button></td>

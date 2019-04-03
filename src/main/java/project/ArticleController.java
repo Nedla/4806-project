@@ -62,9 +62,10 @@ public class ArticleController {
 
     @PostMapping("articleSubmitForm")
     public String articleSubmitFormPost(HttpServletRequest servletRequest, @RequestParam("file") MultipartFile file, 
-    RedirectAttributes redirectAttributes, Article article) {
-
+    RedirectAttributes redirectAttributes, @RequestParam("title") String title) {
+/*
         String fileName = file.getOriginalFilename();
+
         File articleFile = new File(servletRequest.getServletContext().getRealPath("/article"), fileName);
 
         try
@@ -74,12 +75,13 @@ public class ArticleController {
         {
             e.printStackTrace();
         }
-
+*/
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
 
+        Article article = new Article(title);
         article.setStatus(Article.Status.SUBMITTED.toString());
-        article.setFile(articleFile);
+        article.setFile(file);
         articleRepository.save(article);
 
         return "redirect:/";
