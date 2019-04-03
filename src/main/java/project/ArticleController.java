@@ -1,6 +1,5 @@
 package project;
 
-import java.io.File;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +30,9 @@ public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     public Article article = new Article();
 
     @Autowired
@@ -38,7 +41,9 @@ public class ArticleController {
     }
 
     @GetMapping("/articleSubmitForm")
-    public String articleSubmitFormGet(Model model) {
+    public String articleSubmitFormGet(Model model, @CookieValue(value="userId", defaultValue="1") String userIdS) {
+        long userId = Long.parseLong(userIdS);
+        model.addAttribute("username", userRepository.findById(userId).getUsername());
         model.addAttribute("article", this.article);
         model.addAttribute("files", storageService.loadAll().map(
             path -> MvcUriComponentsBuilder.fromMethodName(

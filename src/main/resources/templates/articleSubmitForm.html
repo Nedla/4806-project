@@ -3,26 +3,28 @@
     <title>Still Untitled: Author Page</title>
 </head>
 <body>
-    <form action="#" th:action="@{/articleSubmitForm}" enctype="multipart/form-data" method="POST">
-        <table>
-            <tr>
-                <td>Article Title:</td>
-                <td><input type="text" name="title" /></td>
-            </tr>
-            <tr>
-                <td>File to upload:</td>
-                <td><input type="file" name="file" /></td>
-            </tr>
-            <tr>
-                <td><button type="submit">Upload and submit</button></td>
-            </tr>
-        </table>
-    </form>
+    <h1>Submit an article</h1>
+        <form action="#" th:action="@{/articleSubmitForm}" enctype="multipart/form-data" method="POST">
+            <table>
+                <tr>
+                    <td>Article Title:</td>
+                    <td><input type="text" name="title" /></td>
+                </tr>
+                <tr>
+                    <td>File to upload:</td>
+                    <td><input type="file" name="file" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Upload and submit</button></td>
+                </tr>
+            </table>
+        </form>
     <ul>
         <li th:each="file : ${files}">
             <a th:href="${file}" th:text="${file}" />
         </li>
     </ul>
+    <p th:text="'Logged in as: ' + ${username}"></p>
     <p><a href="/logout">Logout</a></p>
     <footer>A project by Test Group Please Ignore</footer>
 </body>

@@ -16,16 +16,18 @@ public class ReviewerController {
 
     @Autowired
     ArticleRepository articleRepository;
+
     @Autowired
     UserRepository userRepository;
 
     @GetMapping("/reviewerView")
-    public String reviewerViewGet(@CookieValue(value="userId", defaultValue="-1") String userIdS, Model model) {
+    public String reviewerViewGet(@CookieValue(value="userId", defaultValue="1") String userIdS, Model model) {
         long userId = Long.parseLong(userIdS);
         if (userId == -1) return "error";
 
         User user = userRepository.findById(userId);
         model.addAttribute("user", user);
+        model.addAttribute("username", user.getUsername());
 
         List<Article> articles = new ArrayList<>();
         for(Long id : user.getArticleIds()) {
