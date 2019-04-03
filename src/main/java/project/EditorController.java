@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import project.Role;
+import project.User.Role;
 import project.storage.StorageService;
 
 import java.util.List;
@@ -37,20 +37,25 @@ public class EditorController {
     @GetMapping("/editorView")
     public String editorViewGet(Model model) {
         model.addAttribute("articles", getAllArticles());
-        model.addAttribute("files", storageService.loadAll().map(
-            path -> MvcUriComponentsBuilder.fromMethodName(
-                ArticleController.class, "serveFile", path.getFileName().toString())
-                .build().toString())
-                .collect(Collectors.toList()));
-        model.addAttribute("reviewers", findByRole(Role.REVIEWER));
+        model.addAttribute("files",
+                storageService.loadAll()
+                        .map(path -> MvcUriComponentsBuilder
+                                .fromMethodName(ArticleController.class, "serveFile", path.getFileName().toString())
+                                .build().toString())
+                        .collect(Collectors.toList()));
+        model.addAttribute("reviewers", findByRole(User.Role.REVIEWER));
         return "editorView";
     }
 
     @PostMapping("editorView")
-    public String editorViewPost(HttpServletRequest servletRequest, @RequestParam("username") String username, 
-    RedirectAttributes redirectAttributes, Article article) {
-        //UserRepository.findByUsername(username);
-        return "editorView";
+    public String editorViewPost(@RequestParam("article") long articleId, @RequestParam("user") long userId) {
+        try {
+            userRepository.findById(userId).addArticleId(articleId);
+            articleRepository.findById(articleId).setStatus(Article.Status.ASSIGNED);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/editorView";
     }
 
     public Iterable<Article> getAllArticles() {

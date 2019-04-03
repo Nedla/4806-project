@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/registerUserForm")
     public String registerUserFormGet(Model model) {
         model.addAttribute("user", this.user);
-        model.addAttribute("roles", Role.values());
+        model.addAttribute("roles", User.Role.values());
         return "registerUserForm";
     }
     @PostMapping("/registerUserForm")
