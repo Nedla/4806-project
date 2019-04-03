@@ -45,6 +45,7 @@ public class UserController {
     }
     @PostMapping("/registerUserForm")
     public String registerUserFormPost(User user, HttpServletResponse response) {
+        //TODO unqiue user check
         /*List<User> users = userRepository.findByUsername(user.getUsername());
         if (!users.isEmpty()) {
             return "";
