@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,10 @@ public class ArticleController {
     }
 
     @GetMapping("/articleSubmitForm")
-    public String articleSubmitFormGet(Model model) {
+    public String articleSubmitFormGet(Model model, @CookieValue(value="role", defaultValue="none") String roleCookie) {
+        if (!(roleCookie.equals(User.Role.SUBMITTER.toString()))) {
+            return "redirect:/loginPage";
+        }
         model.addAttribute("article", this.article);
         model.addAttribute("files", storageService.loadAll().map(
             path -> MvcUriComponentsBuilder.fromMethodName(
