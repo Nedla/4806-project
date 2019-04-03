@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <title>Still Untitled: Reviewer Page</title>
     </head>
     <body>
-        <p>Assigned articles:</p>
+        <p th:text="'Reviewer' + ${user.username}"></p>
         <table>
             <tr>
                 <td></td>

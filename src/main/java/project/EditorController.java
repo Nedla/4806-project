@@ -50,8 +50,12 @@ public class EditorController {
     @PostMapping("editorView")
     public String editorViewPost(@RequestParam("article") long articleId, @RequestParam("user") long userId) {
         try {
-            userRepository.findById(userId).addArticleId(articleId);
-            articleRepository.findById(articleId).setStatus(Article.Status.ASSIGNED);
+            User user = userRepository.findById(userId);
+            user.addArticleId(articleId);
+            userRepository.save(user);
+            Article article = articleRepository.findById(articleId);
+            article.setStatus(Article.Status.ASSIGNED);
+            articleRepository.save(article);
         } catch (Exception e) {
             e.printStackTrace();
         }

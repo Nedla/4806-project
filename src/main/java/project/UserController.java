@@ -33,6 +33,7 @@ public class UserController {
             return "error"; //TODO multiple users can have same user/pass, should prevent this
         }
         response.addCookie(new Cookie("role", users.get(0).getRole().toString()));
+        response.addCookie(new Cookie("userId", String.valueOf(users.get(0).getId())));
         return "redirect:/";
     }
 
@@ -55,6 +56,7 @@ public class UserController {
 
         userRepository.save(user);
         response.addCookie(new Cookie("role", user.getRole().toString()));
+        response.addCookie(new Cookie("userId", String.valueOf(user.getId())));
         return "redirect:/";
     }
 }
