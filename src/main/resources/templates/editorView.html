@@ -5,7 +5,7 @@
     </head>
     <body>
         <p>Articles:</p>
-        <p>Articles to be accepted/rejected</p>
+        <h1>Articles to be accepted/rejected</h1>
         <table>
             <thead>
             <th>ID</th><th>Title</th><th>Status</th><th>File</th>
@@ -14,11 +14,34 @@
             <tr>
                 <td th:text="${article.id}" />
                 <td th:text="${article.title}" />
-                <td th:text="${article.status}" />
+                <td th:text="${article.status.name()}" />
                 <td><a th:href="${'files/' + article.file}" th:text="${article.file}"/></td>
             </tr>
             </tbody>
         </table>
+        <h1>Assign an article to a reviewer</h1>
+        <form action="#" th:action="@{/editorView}" method="post">
+            <table>
+                <thead>
+                    <th>Article</th><th>Reviewer</th>
+                </thead>
+                <tbody>
+                    <td>
+                        <select th:name="article">
+                            <option th:each="a : ${submittedArticles}" th:value="${a.id}" th:text="${a.title}"></option>
+                        </select>
+                    </td>
+                    <td>
+                        <select th:name="user">
+                            <option th:each="r : ${reviewers}" th:value="${r.id}" th:text="${r.getUsername()}"></option>
+                        </select>
+                    </td>
+                </tbody>
+            </table>
+            <tr>
+                <td><button type="submit">Assign</button></td>
+            </tr>
+        </form>
         <p><a href="/logout">Logout</a></p>
         <footer>A Project by Test Group Please Ignore</footer>
     </body>

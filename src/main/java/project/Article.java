@@ -2,16 +2,24 @@ package project;
 
 import java.io.File;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Article {
+    public enum Status {
+        SUBMITTED,
+        ASSIGNED,
+        REVIEWED,
+        REJECTED
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +27,17 @@ public class Article {
 
     private String title;
 
-    public enum Status {
-        SUBMITTED,
-        REVIEWED
-    }
-    private File file;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
-    private String status;
+    private File file;
 
     public Article(String title) {
         this.title = title;
-        this.status = Status.SUBMITTED.toString();
+        this.status = Status.SUBMITTED;
     }
+
     public Article() {}
 
     public Long getId() {
@@ -49,17 +56,12 @@ public class Article {
         this.title = title;
     }
 
-    public boolean setStatus(String status) {
-        for(Status s : Article.Status.values()) {
-            if (status.equals(s.toString())) {
-                this.status = status;
-                return true;
-            }
-        }
-        return false;
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -78,5 +80,4 @@ public class Article {
     public File getFile() {
         return file;
     }
-
 }

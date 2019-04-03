@@ -24,10 +24,10 @@ public class UserTest {
         Assert.assertNull(user.getRole());
         Assert.assertNull(user.getId());
 
-        user = new User("name1", "pass1", "SUBMITTER");
+        user = new User("name1", "pass1", User.Role.SUBMITTER);
         Assert.assertEquals("name1", user.getUsername());
         Assert.assertEquals( "pass1", user.getPassword());
-        Assert.assertEquals( "SUBMITTER", user.getRole());
+        Assert.assertEquals( User.Role.SUBMITTER, user.getRole());
         Assert.assertNull(user.getId());
     }
 
@@ -54,10 +54,11 @@ public class UserTest {
 
     @Test
     public void testRole() throws Exception {
-        User user = new User("name1", "pass1", User.Role.EDITOR.toString());
-        Assert.assertEquals("EDITOR", user.getRole());
+        User user = new User("name1", "pass1", User.Role.EDITOR);
+        Assert.assertEquals(User.Role.EDITOR, user.getRole());
 
-        Assert.assertFalse( user.setRole("bad role") );
+        user.setRole(User.Role.REVIEWER);
+        Assert.assertEquals(User.Role.REVIEWER, user.getRole());
 
     }
 }

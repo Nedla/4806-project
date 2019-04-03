@@ -27,7 +27,7 @@ public class ArticleTest {
 
         article = new Article("title1");
         Assert.assertEquals("title1", article.getTitle());
-        Assert.assertEquals( "SUBMITTED", article.getStatus());
+        Assert.assertEquals( Article.Status.SUBMITTED, article.getStatus());
         Assert.assertNull(article.getFile());
         Assert.assertNull(article.getId());
     }
@@ -49,9 +49,10 @@ public class ArticleTest {
     @Test
     public void testStatus() {
         Article article = new Article("title1");
-        Assert.assertEquals("SUBMITTED", article.getStatus());
+        Assert.assertEquals(Article.Status.SUBMITTED, article.getStatus());
 
-        Assert.assertFalse( article.setStatus("bad status") );
+        article.setStatus(Article.Status.REJECTED);
+        Assert.assertEquals(Article.Status.REJECTED, article.getStatus());
 
     }
 }

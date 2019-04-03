@@ -52,7 +52,7 @@ public class UserControllerTest {
     @Test
     public void testLoginPagePost() throws Exception {
         Gson gson = new Gson();
-        User user = new User("name123", "pass123", User.Role.SUBMITTER.toString());
+        User user = new User("name123", "pass123", User.Role.SUBMITTER);
         List<User> users = userRepository.findByUsernameAndPassword("name123", "pass123");
         Assert.isTrue(users.isEmpty(), "User does not exist yet");
 

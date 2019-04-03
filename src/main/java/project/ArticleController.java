@@ -1,7 +1,6 @@
 package project;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +21,6 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.storage.StorageService;
-import project.storage.StorageFileNotFoundException;
 
 @Controller
 public class ArticleController {
@@ -63,24 +60,12 @@ public class ArticleController {
     @PostMapping("articleSubmitForm")
     public String articleSubmitFormPost(HttpServletRequest servletRequest, @RequestParam("file") MultipartFile file, 
     RedirectAttributes redirectAttributes, @RequestParam("title") String title) {
-/*
-        String fileName = file.getOriginalFilename();
 
-        File articleFile = new File(servletRequest.getServletContext().getRealPath("/article"), fileName);
-
-        try
-        {
-            file.transferTo(articleFile);
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-*/
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
 
         Article article = new Article(title);
-        article.setStatus(Article.Status.SUBMITTED.toString());
+        article.setStatus(Article.Status.SUBMITTED);
         article.setFile(file);
         articleRepository.save(article);
 
